@@ -16,13 +16,11 @@ namespace EFGetStarted.Model
         public Book (string name, double price)
         {
             this.name = name;
-            this.authors = authors.ToList();
             this.price = price;
         }
         public Book (string name, double price, int qty)
         {
             this.name = name;
-            this.authors = authors.ToList();
             this.price = price;
             this.qty = qty;
         }
@@ -31,25 +29,26 @@ namespace EFGetStarted.Model
         {
             string aux = "";
 
-            foreach (Author author in authors)
+            foreach (Author author in this.authors)
             {
-                return "name = " + author.Name + "email = " + author.email + "gender = " + author.gender + ',';
+                aux =  "\n name = " + author.Name + "\n email = " + author.email + "\n gender = " + author.gender + "\n";
             }
 
-
-            string apresentation = $"Book [{this.name}, authors = {aux}, price = {price}, qty = {qty}] \n";
+            string apresentation = $"Book {this.name}\n [\n author(s) = \n {aux}\n ]\nprice = {price}\nqty = {qty}\n";
             
             return apresentation;
         } 
 
         public string getAuthorNames ()
         {
-            foreach (Author author in authors)
+            string aux = "";
+
+            foreach (Author author in this.authors)
             {
-                return "name = " + author.Name + ',';
+                aux = aux + author.Name + ',';
             }
 
-            return "";
+            return "name = " + aux;
         }
     }
 }

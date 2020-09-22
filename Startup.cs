@@ -5,8 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,6 +29,7 @@ namespace EFGetStarted
             builder.MapRoute("BooksDescriptionById/{bookId}", ShowBookById);
             builder.MapRoute("BookNameById/{bookId}", ShowNameOfBookById);
             builder.MapRoute("BookAuthorsById/{bookId}", ShowNameOfBookById);
+            builder.MapRoute("Book/ShowLivro/{bookId}", ShowBookHtml);
 
             //criar rota home
             builder.MapRoute("", Home); 
@@ -102,5 +105,33 @@ namespace EFGetStarted
             }
         }
         */
+
+        public Task ShowBookHtml(HttpContext context)
+        {
+            using (var db = new BookContext())
+            {
+                var books = db.Books
+                    .Include(book => book.authors)
+                    .ToList();
+
+                int bookId = Convert.ToInt32(context.GetRouteValue("bookId").ToString()) - 1;
+                var book = books[bookId];
+
+                var conteudoArquivo = CarregaArquivoHTML("ShowBook");
+
+                conteudoArquivo = conteudoArquivo.Replace("#NOVO-ITEM#", $"<h4>{book.ToString()}<h4>");
+
+                return context.Response.WriteAsync(conteudoArquivo);
+            }
+        }
+
+        private string CarregaArquivoHTML(string nomeArquivo)
+        {
+            var nomeCompletoArquivo = $"View/{nomeArquivo}.html";
+            using (var arquivo = File.OpenText(nomeCompletoArquivo))
+            {
+                return arquivo.ReadToEnd();
+            }
+        }
     }
 }

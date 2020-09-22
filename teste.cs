@@ -15,12 +15,12 @@ namespace EFGetStarted
             {
                 //Create (Cria um livro e cadastrar na tabela
 
-                Console.WriteLine("Inserting a new blog");
+                Console.WriteLine("Inserting a new book");
                 db.Add(new Book("Sentido da vida e tudo mais", 10.00));
                 db.SaveChanges();
 
                 // Read (busca um livro no banco de dados e inclue seus autores
-                Console.WriteLine("Querying for a blog");
+                Console.WriteLine("Querying for a book");
                 var books = db.Books
                     .Include(book => book.authors)
                     .ToList();
@@ -33,6 +33,14 @@ namespace EFGetStarted
                         Name = "Mc Gurila",
                         gender = 'M',
                         email = "gurilinha@hotmail.com"
+                    });
+
+                books[0].authors.Add(
+                    new Author
+                    {
+                        Name = "Mc Bananinha",
+                        gender = 'M',
+                        email = "bananinha@hotmail.com"
                     });
 
                 db.SaveChanges();

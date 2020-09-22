@@ -27,8 +27,8 @@ namespace EFGetStarted
         {
             var builder = new RouteBuilder(app);
             builder.MapRoute("BooksDescriptionById/{bookId}", ShowBookById);
-            builder.MapRoute("BookNameById/{bookId}", ShowNameOfBookById);
-            builder.MapRoute("BookAuthorsById/{bookId}", ShowNameOfBookById);
+            builder.MapRoute("ShowNameOfBookById/{bookId}", ShowNameOfBookById);
+            builder.MapRoute("BookAuthorsById/{bookId}", ShowBookAuthorsByIdBook);
             builder.MapRoute("Book/ShowLivro/{bookId}", ShowBookHtml);
 
             //criar rota home

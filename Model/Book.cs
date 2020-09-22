@@ -29,9 +29,9 @@ namespace EFGetStarted.Model
         {
             string aux = "";
 
-            foreach (Author author in this.authors)
+            foreach (Author author in authors)
             {
-                aux =  "\n name = " + author.Name + "\n email = " + author.email + "\n gender = " + author.gender + "\n";
+                aux =  aux + "\n name = " + author.Name + "\n email = " + author.email + "\n gender = " + author.gender + "\n";
             }
 
             string apresentation = $"Book {this.name}\n [\n author(s) = \n {aux}\n ]\nprice = {price}\nqty = {qty}\n";
@@ -48,7 +48,7 @@ namespace EFGetStarted.Model
                 aux = aux + author.Name + ',';
             }
 
-            return "name = " + aux;
+            return "name = " + aux + ".";
         }
     }
 }

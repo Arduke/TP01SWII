@@ -33,12 +33,16 @@ Como rodar:
 
 Apenas abra o projeto e compile.
 
+Arquivo teste.cs é parte do projeto em prompt.
 
 Rotas:
 
 - Apresentar descrição completa de um livro passando o ID:
-    - http://localhost:5000/BookNameById/<id do livro>
+    - http://localhost:5000/BooksDescriptionById/<id do livro>
 - Apresentar somente o nome de um livro passando o ID:
     - http://localhost:5000/ShowNameOfBookById/<id do livro>
 - Apresentar os autores de um livro passando o ID:
     - http://localhost:5000/BookAuthorsById/<id do livro>
+- Apresentar pagina HTML com dados de um livro passando o ID:
+    - http://localhost:5000/Book/ShowLivro/<id do livro>
+

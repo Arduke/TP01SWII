@@ -42,3 +42,6 @@ Rotas:
     - http://localhost:5000/ShowNameOfBookById/<id do livro>
 - Apresentar os autores de um livro passando o ID:
     - http://localhost:5000/BookAuthorsById/<id do livro>
+- Apresentar pagina HTML com dados de um livro passando o ID:
+    - http://localhost:5000/Book/ShowLivro/<id do livro>
+
